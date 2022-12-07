@@ -1,13 +1,16 @@
 ﻿**Name**: 
- Artem Gusenkov
-**Email**:  
-artgus0791@gmail.com
+Artem Gusenkov
+
+**Email**: artgus0791@gmail.com
+
 **Personal Qualities:**
 - Ambition
 - Attention to Detail
 - Fast Learner
 - Punctual
+
 **Skills**
 Php, laravel, phpStorm
+
 **English level:**
 Pre-Intermediate
