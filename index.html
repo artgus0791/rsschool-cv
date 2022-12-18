@@ -1,9 +1,166 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>Шаблон для тестового задания</title>
-  </head>
-  <body>
-  </body>
+    <title>Artem CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#contacts">Contacts</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#languages">Languages</a></li>
+                    <li><a href="#code">Code</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Junior Frontend Developer</h1>
+            <p>
+                <img class="ava" src="ava.png" width="217" alt="ava">  I’m a junior front-end Developer. I can build adaptive and high-quality layouts on your design or
+                adapt the website to your corporate identity. I can also create any custom development, complex logic or other tasks related to the frontend. I have a perfect understanding of how JavaScript, HTML and CSS work, and have a lot of experience working with all of them.
+
+            </p>
+            <article class="clear">
+                <h2>Contacts</h2>
+                <ul class="contacts" id="contacts">
+                    <li>
+                        Email:<span>artgus0791@gmail.com</span>
+                    </li>
+                    <li>
+                        Address: <span>Moscow, Russia</span>
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h2>Education</h2>
+                <ul class="education" id="education">
+                    <li>
+                        code-basics.com  html
+                    </li>
+                    <li>
+                        code-basics.com  css
+                    </li>
+                    <li>
+                        code-basics.com  javascript
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h2>Skills</h2>
+                <ul class="skills" id="skills">
+                    <li>
+                        Javascript
+                    </li>
+                    <li>
+                        PHP
+                    </li>
+                    <li>
+                        Html/Css
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h2>Languages</h2>
+                <ul class="languages" id="languages">
+                    <li>
+                        English: Pre-Intermediate
+                    </li>
+                    <li>
+                        Russian: Native
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h2 id="code">Code</h2>
+                <pre>
+class ZenBlogAdminContactController extends Controller
+{
+    private $contactService;
+
+    public function __construct(ContactService $contactService)
+    {
+        $this->contactService = $contactService;
+    }
+
+    public function contacts(Request $request)
+    {
+        $contacts = $this->contactService->getSearchContacts($request->search);
+
+        Contact::unread()->update(['is_read' => 1]);
+
+        return view('zenblog.admin.contacts.index', compact('contacts'));
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('zenblog.index');
+    }
+
+    public function editContact(int $id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return redirect()->route('zenblog.admin.contact')->with('message', __('auth.message_not_found'));
+        }
+        return view('zenblog.admin.contacts.edit', compact('contact', ));
+    }
+    public function updateContact(Request $request, int $id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return redirect()->route('zenblog.admin.contacts')->with('message', 'Сообщение  не найдено');
+        }
+
+        $contact->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'is_read' => $request->is_read ? 1 : 0,
+                'image' => $request->hasFile('image') ?
+                    $this->contactService->updateImage($contact->image, $request->image) :
+                    $contact->image
+            ]
+        );
+
+        return redirect()->route('zenblog.admin.contacts.edit', [$contact->id]);
+    }
+
+    public function deleteAllContacts()
+    {
+        Contact::query()->delete();
+
+        return redirect()->route('zenblog.admin.contacts')->with('success', 'Данные успешно удалены');
+    }
+
+
+}
+                </pre>
+            </article>
+            <article>
+                <h2>Projects</h2>
+                <ul class="projects" id="projects">
+                    <li>
+                       <a href="https://github.com/artgus0791/rsschool-cv">rsschool-cv</a>
+                    </li>
+                </ul>
+            </article>
+        </main>
+        <footer>
+              <a href="https://github.com/artgus0791"><img src="git.jpeg" width="110" alt="github"></a>  2022  <a href="https://rs.school/js"><img src="https://rs.school/images/rs_school_js.svg" width="110" alt="rss"></a>
+        </footer>
+    </div>
+</body>
 </html>
