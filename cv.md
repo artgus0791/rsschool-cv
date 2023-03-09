@@ -8,6 +8,7 @@ Artem Gusenkov
 - Attention to Detail
 - Fast Learner
 - Punctual
+- Reliable
 
 **Skills**
 Php, laravel, phpStorm
