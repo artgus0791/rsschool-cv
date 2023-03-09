@@ -11,7 +11,7 @@ Artem Gusenkov
 - Reliable
 
 **Skills**
-Php, laravel, phpStorm
+Php, laravel, phpStorm, Html, CSS
 
 **English level:**
 Pre-Intermediate
